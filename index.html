@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MARCOM MYTH / FACT — 75 Beginner Challenge</title>
+<meta name="description" content="Game Mitos atau Fakta Marketing Communication — 75 pernyataan, Gen Z urban style, siap GitHub Pages.">
+<style>
+:root{
+  --bg:#07070a; --panel:#0f1015; --panel2:#151720; --ink:#f7f7fb; --muted:#9da3b2;
+  --lime:#c8ff00; --pink:#ff3ea5; --cyan:#00e7ff; --violet:#8d67ff; --orange:#ff8a00;
+  --line:rgba(255,255,255,.12); --good:#8bffb0; --bad:#ff6f91;
+  --shadow:0 28px 90px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; min-height:100vh; color:var(--ink);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 18% 12%,rgba(255,62,165,.14),transparent 25%),
+    radial-gradient(circle at 82% 18%,rgba(0,231,255,.12),transparent 24%),
+    radial-gradient(circle at 50% 90%,rgba(200,255,0,.08),transparent 24%),
+    var(--bg);
+  overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.28;z-index:-1;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+.wrap{width:min(1120px,93vw);margin:auto;padding:24px 0 52px}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:18px}
+.logo{display:flex;align-items:center;gap:11px}
+.mark{
+  width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-weight:1000;
+  color:#090909;background:var(--lime);box-shadow:8px 8px 0 var(--pink);transform:rotate(-3deg)
+}
+.logo b{font-size:15px;letter-spacing:.08em} .logo small{display:block;color:var(--muted);margin-top:2px}
+.navtag{border:1px solid var(--line);border-radius:999px;padding:9px 13px;color:var(--muted);font-size:12px;background:#0d0e13}
+.hero{
+  position:relative;overflow:hidden;border:1px solid var(--line);border-radius:30px;padding:34px;
+  background:linear-gradient(135deg,rgba(255,255,255,.055),rgba(255,255,255,.018));box-shadow:var(--shadow)
+}
+.hero:before{
+ content:"MARCOM";position:absolute;right:-32px;top:15px;font-size:clamp(88px,18vw,220px);font-weight:1000;
+ line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.055);transform:rotate(-8deg);pointer-events:none
+}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;color:#090909;background:var(--cyan);padding:7px 10px;border-radius:7px;font-size:11px;font-weight:1000;letter-spacing:.12em;text-transform:uppercase;transform:rotate(-1deg)}
+h1{font-size:clamp(44px,8vw,90px);line-height:.88;letter-spacing:-.065em;margin:20px 0 16px;max-width:900px;text-transform:uppercase}
+.stroke{color:transparent;-webkit-text-stroke:1.5px var(--ink)}
+.accent{color:var(--lime);text-shadow:5px 5px 0 rgba(255,62,165,.45)}
+.lead{max-width:780px;color:#c1c5cf;line-height:1.7;font-size:17px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}
+.stat{background:#0d0e13;border:1px solid var(--line);border-radius:18px;padding:15px;position:relative;overflow:hidden}
+.stat b{font-size:25px} .stat span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.btn{border:0;cursor:pointer;border-radius:14px;padding:14px 18px;font-weight:950;font-size:14px;transition:.18s}
+.btn:hover{transform:translateY(-2px) rotate(-.4deg)}
+.btn-main{background:var(--lime);color:#090909;box-shadow:6px 6px 0 var(--pink)}
+.btn-alt{background:#151720;color:var(--ink);border:1px solid var(--line)}
+.stickers{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.sticker{font-size:11px;font-weight:900;padding:7px 9px;border-radius:7px;border:1px solid var(--line);background:#11131a;transform:rotate(var(--r))}
+.sticker:nth-child(1){color:var(--pink)} .sticker:nth-child(2){color:var(--cyan)} .sticker:nth-child(3){color:var(--lime)} .sticker:nth-child(4){color:#ffd75e}
+.game,.result{display:none;margin-top:20px} .active{display:block}
+.panel{border:1px solid var(--line);border-radius:28px;background:rgba(15,16,21,.94);box-shadow:var(--shadow);padding:24px}
+.hud{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.hud-left{display:flex;gap:9px;flex-wrap:wrap}
+.chip{padding:8px 10px;border:1px solid var(--line);border-radius:999px;font-size:12px;color:var(--muted);background:#12141b}
+.chip b{color:var(--ink)} .combo{color:#090909;background:var(--pink);font-weight:950}
+.progress-row{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.progress{height:10px;background:#20222b;border-radius:99px;overflow:hidden;flex:1}
+.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--cyan),var(--lime));transition:.35s}
+.count{min-width:82px;text-align:right;color:var(--muted);font-size:12px}
+.cat{display:inline-block;margin:3px 0 13px;background:var(--violet);color:#fff;border-radius:7px;padding:7px 9px;font-size:11px;font-weight:1000;letter-spacing:.08em;text-transform:uppercase;transform:rotate(-1deg)}
+.q{font-size:clamp(24px,4vw,42px);font-weight:950;line-height:1.12;letter-spacing:-.03em;margin:0 0 22px;max-width:980px}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ans{
+  min-height:88px;border-radius:20px;border:1px solid var(--line);background:#151720;color:var(--ink);
+  font-size:23px;font-weight:1000;cursor:pointer;transition:.18s
+}
+.ans:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.28)}
+.ans.correct{background:rgba(139,255,176,.12);border-color:rgba(139,255,176,.55)}
+.ans.wrong{background:rgba(255,111,145,.12);border-color:rgba(255,111,145,.5)}
+.ans:disabled{cursor:default;transform:none}
+.feedback{display:none;margin-top:16px;border:1px solid var(--line);border-radius:18px;padding:17px;background:#11131a}
+.feedback.show{display:block} .feedback h3{margin:0 0 7px;font-size:18px} .feedback p{margin:0;color:#bac0cc;line-height:1.65}
+.next{display:none;justify-content:flex-end;margin-top:12px} .next.show{display:flex}
+.result-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:16px}
+.card{border:1px solid var(--line);border-radius:26px;background:#101117;padding:24px;box-shadow:var(--shadow)}
+.big{font-size:clamp(68px,10vw,118px);font-weight:1000;letter-spacing:-.08em;line-height:.9;color:var(--lime);text-shadow:7px 7px 0 rgba(255,62,165,.35)}
+.big small{font-size:24px;color:var(--muted);text-shadow:none}
+.grade{font-size:22px;font-weight:950;margin:14px 0 7px}
+.card p{color:var(--muted);line-height:1.65}
+.bar{margin:14px 0} .barhead{display:flex;justify-content:space-between;gap:10px;font-size:12px;margin-bottom:6px}
+.track{height:9px;background:#22242d;border-radius:99px;overflow:hidden} .fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--cyan),var(--lime))}
+.review{margin-top:16px;display:grid;gap:9px} .review-item{border:1px solid var(--line);border-radius:16px;padding:14px;background:#13151c}
+.review-item b{display:block;margin-bottom:5px} .review-item small{color:var(--muted);line-height:1.45}
+.footer{text-align:center;color:#6f7583;font-size:11px;padding:26px 4px 2px}
+kbd{background:#191b23;border:1px solid var(--line);border-bottom-color:#414552;border-radius:6px;padding:2px 6px;color:#fff}
+.flash{animation:flash .24s ease} @keyframes flash{50%{filter:brightness(1.3)}}
+@media(max-width:760px){
+ .wrap{width:min(95vw,1120px)} .navtag{display:none} .hero,.panel,.card{padding:20px;border-radius:22px}
+ .stats{grid-template-columns:1fr 1fr} .answers,.result-grid{grid-template-columns:1fr} h1{font-size:48px}
+ .ans{min-height:72px} .hero:before{font-size:130px;right:-50px;top:25px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="nav">
+    <div class="logo"><div class="mark">MC</div><div><b>MARKETING COMMUNICATION</b><small>Myth / Fact Beginner Challenge</small></div></div>
+    <div class="navtag">75 items • no login • GitHub Pages ready</div>
+  </div>
+
+  <section class="hero" id="home">
+    <div class="eyebrow">⚡ Beginner Gen Z Edition</div>
+    <h1>MARCOM <span class="stroke">MYTH</span> / <span class="accent">FACT</span></h1>
+    <p class="lead">Bukan sekadar hafalan. Challenge ini menguji branding, audience, content, social media, influencer, PR, paid media, funnel, metrics, promotion, ethics, sampai AI dalam Marketing Communication.</p>
+    <div class="stats">
+      <div class="stat"><b>75</b><span>Pernyataan acak</span></div>
+      <div class="stat"><b>15+</b><span>Topik MarCom</span></div>
+      <div class="stat"><b>100</b><span>Skor maksimum</span></div>
+      <div class="stat"><b>0</b><span>Login / database</span></div>
+    </div>
+    <div class="stickers">
+      <span class="sticker" style="--r:-2deg">#BRANDING</span>
+      <span class="sticker" style="--r:2deg">#SOCIALMEDIA</span>
+      <span class="sticker" style="--r:-1deg">#INFLUENCER</span>
+      <span class="sticker" style="--r:3deg">#AIxMARCOM</span>
+    </div>
+    <div class="row">
+      <button class="btn btn-main" onclick="startGame()">START THE CHALLENGE →</button>
+      <button class="btn btn-alt" onclick="howTo()">HOW TO PLAY</button>
+    </div>
+  </section>
+
+  <section class="game" id="game">
+    <div class="panel" id="panel">
+      <div class="hud">
+        <div class="hud-left">
+          <div class="chip">SCORE <b id="liveScore">0</b></div>
+          <div class="chip combo">COMBO <span id="combo">x0</span></div>
+        </div>
+        <div class="chip"><kbd>M</kbd> MITOS &nbsp; <kbd>F</kbd> FAKTA &nbsp; <kbd>ENTER</kbd> NEXT</div>
+      </div>
+      <div class="progress-row">
+        <div class="progress"><div id="progress"></div></div>
+        <div class="count" id="count">1 / 75</div>
+      </div>
+      <div class="cat" id="cat">TOPIK</div>
+      <div class="q" id="q">...</div>
+      <div class="answers">
+        <button class="ans" id="mitos" onclick="answer(false)">MITOS</button>
+        <button class="ans" id="fakta" onclick="answer(true)">FAKTA</button>
+      </div>
+      <div class="feedback" id="feedback">
+        <h3 id="fbTitle"></h3>
+        <p id="fbText"></p>
+      </div>
+      <div class="next" id="next"><button class="btn btn-main" onclick="nextQ()">NEXT →</button></div>
+    </div>
+  </section>
+
+  <section class="result" id="result">
+    <div class="result-grid">
+      <div class="card">
+        <div class="eyebrow">FINAL DROP</div>
+        <div class="big"><span id="pct">0</span><small>/100</small></div>
+        <div class="grade" id="grade"></div>
+        <p id="summary"></p>
+        <div class="row">
+          <button class="btn btn-main" onclick="startGame()">PLAY AGAIN</button>
+          <button class="btn btn-alt" onclick="goHome()">BACK HOME</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="eyebrow">TOPIC MAP</div>
+        <div id="bars"></div>
+      </div>
+    </div>
+    <div class="card review" id="review"></div>
+  </section>
+  <div class="footer">MARKETING COMMUNICATION • 75 MYTH / FACT ITEMS • BUILT FOR CLASSROOM PLAY</div>
+</div>
+
+<script>
+const bank = [
+{c:`Dasar MarCom`,s:`Marketing Communication adalah komunikasi yang digunakan brand untuk menyampaikan pesan kepada audiens.`,a:true,e:`Benar. Marketing Communication membantu brand menyampaikan informasi, nilai, dan pesan kepada audiens.`},
+{c:`Dasar MarCom`,s:`Marketing Communication hanya berarti membuat iklan di televisi.`,a:false,e:`Salah. Marketing Communication mencakup banyak cara, seperti iklan, media sosial, PR, event, email, dan lainnya.`},
+{c:`Dasar MarCom`,s:`Tujuan komunikasi pemasaran bisa berupa membuat orang mengenal sebuah brand.`,a:true,e:`Benar. Salah satu tujuan dasar MarCom adalah membangun awareness.`},
+{c:`Dasar MarCom`,s:`Komunikasi pemasaran tidak perlu memiliki target audiens.`,a:false,e:`Salah. Brand perlu tahu siapa yang ingin diajak berkomunikasi.`},
+{c:`Dasar MarCom`,s:`Pesan yang jelas lebih mudah dipahami audiens.`,a:true,e:`Benar. Pesan yang sederhana dan jelas biasanya lebih mudah diterima.`},
+{c:`Branding`,s:`Nama, logo, warna, dan gaya visual dapat membantu orang mengenali brand.`,a:true,e:`Benar. Unsur visual membantu membangun identitas brand.`},
+{c:`Branding`,s:`Logo dan brand adalah hal yang persis sama.`,a:false,e:`Salah. Logo adalah bagian dari brand, bukan keseluruhan brand.`},
+{c:`Branding`,s:`Brand yang konsisten lebih mudah dikenali.`,a:true,e:`Benar. Konsistensi membantu brand lebih mudah diingat.`},
+{c:`Branding`,s:`Warna tidak memiliki peran apa pun dalam identitas brand.`,a:false,e:`Salah. Warna dapat menjadi bagian penting dari identitas visual.`},
+{c:`Branding`,s:`Slogan dapat membantu menyampaikan pesan singkat tentang brand.`,a:true,e:`Benar. Slogan biasanya dibuat singkat dan mudah diingat.`},
+{c:`Target Audiens`,s:`Target audiens adalah kelompok orang yang ingin dijangkau oleh brand.`,a:true,e:`Benar. Mereka adalah orang yang paling relevan dengan pesan atau penawaran brand.`},
+{c:`Target Audiens`,s:`Semua produk harus ditujukan kepada semua orang.`,a:false,e:`Salah. Banyak produk lebih efektif jika fokus pada kelompok yang paling sesuai.`},
+{c:`Target Audiens`,s:`Usia dapat menjadi salah satu cara mengenali target audiens.`,a:true,e:`Benar. Usia termasuk salah satu data demografis.`},
+{c:`Target Audiens`,s:`Minat dan kebiasaan audiens juga dapat membantu brand memahami targetnya.`,a:true,e:`Benar. Minat dan perilaku membantu membuat komunikasi lebih relevan.`},
+{c:`Target Audiens`,s:`Mengenal target audiens tidak penting selama desain iklannya bagus.`,a:false,e:`Salah. Desain bagus tetap harus relevan dengan audiens yang dituju.`},
+{c:`Pesan`,s:`Headline adalah bagian yang biasanya digunakan untuk menarik perhatian pembaca.`,a:true,e:`Benar. Headline membantu membuat orang berhenti dan membaca lebih lanjut.`},
+{c:`Pesan`,s:`Pesan promosi yang baik harus selalu menggunakan bahasa yang rumit.`,a:false,e:`Salah. Bahasa sederhana sering justru lebih mudah dipahami.`},
+{c:`Pesan`,s:`Call to Action atau CTA mengajak audiens melakukan sesuatu.`,a:true,e:`Benar. Contohnya: Beli Sekarang, Daftar, Klik, atau Pelajari Lebih Lanjut.`},
+{c:`Pesan`,s:`CTA tidak diperlukan jika brand ingin audiens melakukan tindakan tertentu.`,a:false,e:`Salah. CTA membantu memberi arahan tindakan yang jelas.`},
+{c:`Pesan`,s:`Pesan yang sesuai kebutuhan audiens biasanya lebih relevan.`,a:true,e:`Benar. Relevansi membuat komunikasi lebih bermakna bagi audiens.`},
+{c:`Copywriting`,s:`Copywriting adalah kegiatan menulis teks untuk tujuan komunikasi atau pemasaran.`,a:true,e:`Benar. Copywriting digunakan untuk menyampaikan pesan dan mendorong respons.`},
+{c:`Copywriting`,s:`Copywriting hanya digunakan untuk caption Instagram.`,a:false,e:`Salah. Copywriting juga digunakan di iklan, website, email, brosur, dan banyak media lain.`},
+{c:`Copywriting`,s:`Kalimat singkat bisa menjadi copy yang efektif.`,a:true,e:`Benar. Copy tidak harus panjang untuk bisa kuat.`},
+{c:`Copywriting`,s:`Manfaat produk dapat dijelaskan dalam copy.`,a:true,e:`Benar. Menjelaskan manfaat membantu audiens memahami nilai produk.`},
+{c:`Copywriting`,s:`Semakin panjang copy, pasti semakin bagus.`,a:false,e:`Salah. Panjang copy harus disesuaikan dengan kebutuhan dan konteks.`},
+{c:`Konten`,s:`Konten dapat digunakan untuk memberi informasi kepada audiens.`,a:true,e:`Benar. Konten tidak hanya untuk menjual, tetapi juga bisa mengedukasi atau menghibur.`},
+{c:`Konten`,s:`Semua konten brand harus selalu berisi ajakan membeli.`,a:false,e:`Salah. Brand juga dapat membuat konten edukasi, hiburan, inspirasi, atau interaksi.`},
+{c:`Konten`,s:`Video adalah salah satu bentuk konten.`,a:true,e:`Benar. Selain video, ada foto, carousel, artikel, podcast, dan lainnya.`},
+{c:`Konten`,s:`Konten yang sesuai dengan karakter audiens lebih mudah terasa relevan.`,a:true,e:`Benar. Relevansi adalah bagian penting dalam strategi konten.`},
+{c:`Konten`,s:`Mengikuti tren selalu wajib meskipun tidak cocok dengan brand.`,a:false,e:`Salah. Tren sebaiknya dipilih yang masih relevan dengan brand.`},
+{c:`Media Sosial`,s:`Instagram, TikTok, YouTube, dan LinkedIn dapat digunakan untuk komunikasi pemasaran.`,a:true,e:`Benar. Semuanya dapat menjadi kanal komunikasi sesuai audiens dan tujuan.`},
+{c:`Media Sosial`,s:`Semua platform media sosial memiliki karakter audiens yang selalu sama.`,a:false,e:`Salah. Setiap platform memiliki pola penggunaan dan audiens yang dapat berbeda.`},
+{c:`Media Sosial`,s:`Like adalah salah satu bentuk engagement.`,a:true,e:`Benar. Komentar, share, save, dan klik juga termasuk bentuk interaksi.`},
+{c:`Media Sosial`,s:`Jumlah followers adalah satu-satunya ukuran keberhasilan akun brand.`,a:false,e:`Salah. Brand juga dapat melihat reach, engagement, klik, leads, atau conversion.`},
+{c:`Media Sosial`,s:`Caption dapat digunakan untuk menjelaskan pesan dalam sebuah posting.`,a:true,e:`Benar. Caption membantu memberi konteks dan pesan tambahan.`},
+{c:`Influencer`,s:`Influencer dapat membantu brand menjangkau audiens tertentu.`,a:true,e:`Benar. Influencer memiliki komunitas yang dapat relevan dengan target brand.`},
+{c:`Influencer`,s:`Influencer harus selalu memiliki jutaan followers agar berguna bagi brand.`,a:false,e:`Salah. Micro-influencer juga dapat efektif jika audiensnya relevan.`},
+{c:`Influencer`,s:`Kesesuaian influencer dengan brand penting untuk dipertimbangkan.`,a:true,e:`Benar. Brand fit membantu komunikasi terasa lebih natural dan dipercaya.`},
+{c:`Influencer`,s:`Konten berbayar dari influencer sebaiknya dibuat seolah-olah bukan kerja sama.`,a:false,e:`Salah. Transparansi dalam konten berbayar penting.`},
+{c:`Influencer`,s:`Review produk dari kreator dapat menjadi bagian dari influencer marketing.`,a:true,e:`Benar. Review adalah salah satu format kolaborasi yang umum.`},
+{c:`Public Relations`,s:`PR dapat membantu membangun hubungan baik antara brand dan publik.`,a:true,e:`Benar. Public Relations berhubungan dengan reputasi dan hubungan dengan stakeholder.`},
+{c:`Public Relations`,s:`PR hanya dibutuhkan ketika brand mengalami krisis.`,a:false,e:`Salah. PR juga digunakan untuk membangun reputasi dan hubungan secara rutin.`},
+{c:`Public Relations`,s:`Media coverage dapat membantu brand mendapatkan perhatian publik.`,a:true,e:`Benar. Pemberitaan media dapat memperluas exposure brand.`},
+{c:`Public Relations`,s:`Saat krisis, brand sebaiknya menyampaikan informasi yang akurat.`,a:true,e:`Benar. Akurasi penting agar kepercayaan tidak semakin menurun.`},
+{c:`Public Relations`,s:`Mengabaikan semua pertanyaan publik selalu menjadi strategi PR terbaik.`,a:false,e:`Salah. Brand biasanya perlu merespons secara tepat sesuai situasi.`},
+{c:`Iklan`,s:`Iklan berbayar disebut paid media.`,a:true,e:`Benar. Paid media adalah media yang membutuhkan biaya untuk distribusi.`},
+{c:`Iklan`,s:`Iklan dapat digunakan untuk meningkatkan awareness.`,a:true,e:`Benar. Iklan sering digunakan untuk memperkenalkan brand atau produk.`},
+{c:`Iklan`,s:`Semua iklan harus memakai format video.`,a:false,e:`Salah. Iklan juga dapat berupa gambar, teks, audio, banner, dan format lain.`},
+{c:`Iklan`,s:`Targeting membantu iklan ditampilkan kepada kelompok audiens tertentu.`,a:true,e:`Benar. Targeting membantu distribusi iklan menjadi lebih terarah.`},
+{c:`Iklan`,s:`Iklan yang sering dilihat pasti membuat semua orang membeli.`,a:false,e:`Salah. Melihat iklan tidak selalu langsung menghasilkan pembelian.`},
+{c:`Funnel`,s:`Awareness berarti audiens mulai mengenal brand.`,a:true,e:`Benar. Awareness adalah tahap ketika orang mulai mengetahui keberadaan brand.`},
+{c:`Funnel`,s:`Consideration berarti audiens mulai mempertimbangkan pilihan.`,a:true,e:`Benar. Pada tahap ini orang mulai membandingkan dan menilai alternatif.`},
+{c:`Funnel`,s:`Conversion dapat berarti pembelian.`,a:true,e:`Benar. Pembelian adalah salah satu bentuk conversion.`},
+{c:`Funnel`,s:`Conversion hanya bisa berarti membeli produk.`,a:false,e:`Salah. Conversion juga bisa berupa daftar, mengisi form, download, booking, dan aksi lain.`},
+{c:`Funnel`,s:`Loyalty berhubungan dengan hubungan jangka panjang dengan pelanggan.`,a:true,e:`Benar. Loyalty berkaitan dengan pelanggan yang tetap memilih atau kembali ke brand.`},
+{c:`Metrik`,s:`Reach menunjukkan berapa banyak akun atau orang yang berhasil dijangkau.`,a:true,e:`Benar. Reach berhubungan dengan jumlah audiens unik yang melihat konten.`},
+{c:`Metrik`,s:`Impressions dan reach selalu memiliki angka yang sama.`,a:false,e:`Salah. Satu orang dapat melihat konten lebih dari sekali, sehingga impressions bisa lebih tinggi.`},
+{c:`Metrik`,s:`Click menunjukkan bahwa seseorang menekan tautan atau elemen yang bisa diklik.`,a:true,e:`Benar. Klik adalah salah satu bentuk respons digital.`},
+{c:`Metrik`,s:`Data dapat membantu brand mengevaluasi kampanye.`,a:true,e:`Benar. Data membantu melihat apa yang berjalan baik dan apa yang perlu diperbaiki.`},
+{c:`Metrik`,s:`Jika banyak orang melihat konten, brand tidak perlu mengecek hasil lainnya.`,a:false,e:`Salah. Brand tetap perlu melihat metrik lain sesuai tujuan kampanye.`},
+{c:`Promosi Penjualan`,s:`Diskon adalah salah satu bentuk sales promotion.`,a:true,e:`Benar. Diskon digunakan untuk mendorong pembelian dalam periode tertentu.`},
+{c:`Promosi Penjualan`,s:`Cashback dapat menjadi bentuk promosi penjualan.`,a:true,e:`Benar. Cashback adalah salah satu bentuk insentif.`},
+{c:`Promosi Penjualan`,s:`Giveaway tidak pernah digunakan dalam komunikasi pemasaran.`,a:false,e:`Salah. Giveaway cukup sering digunakan untuk meningkatkan awareness atau engagement.`},
+{c:`Promosi Penjualan`,s:`Promosi yang terlalu sering dapat membuat orang terbiasa menunggu diskon.`,a:true,e:`Benar. Hal ini dapat memengaruhi persepsi harga dan kebiasaan membeli.`},
+{c:`Promosi Penjualan`,s:`Sales promotion hanya bisa dilakukan di toko fisik.`,a:false,e:`Salah. Sales promotion juga dapat dilakukan secara online.`},
+{c:`Email Marketing`,s:`Email dapat digunakan untuk mengirim informasi promosi kepada pelanggan.`,a:true,e:`Benar. Email marketing adalah salah satu bentuk direct communication.`},
+{c:`Email Marketing`,s:`Subject email membantu membuat penerima tertarik membuka email.`,a:true,e:`Benar. Subject line adalah bagian penting dari email.`},
+{c:`Email Marketing`,s:`Semua email promosi pasti termasuk spam.`,a:false,e:`Salah. Email yang relevan, berizin, dan bermanfaat tidak otomatis menjadi spam.`},
+{c:`Email Marketing`,s:`Email dapat dipersonalisasi sesuai kelompok pelanggan.`,a:true,e:`Benar. Personalisasi dapat membuat pesan lebih relevan.`},
+{c:`Email Marketing`,s:`Email marketing tidak bisa digunakan untuk membangun hubungan dengan pelanggan.`,a:false,e:`Salah. Email dapat digunakan untuk edukasi, informasi, promosi, dan menjaga hubungan.`},
+{c:`Etika & AI`,s:`Testimoni palsu termasuk praktik komunikasi yang tidak etis.`,a:true,e:`Benar. Testimoni palsu dapat menyesatkan audiens.`},
+{c:`Etika & AI`,s:`Brand sebaiknya jujur dalam menyampaikan klaim produk.`,a:true,e:`Benar. Kejujuran membantu menjaga kepercayaan audiens.`},
+{c:`Etika & AI`,s:`Data pribadi audiens boleh digunakan tanpa memperhatikan privasi.`,a:false,e:`Salah. Privasi dan izin pengguna penting dalam komunikasi digital.`},
+{c:`Etika & AI`,s:`AI dapat membantu membuat ide konten.`,a:true,e:`Benar. AI dapat membantu brainstorming, drafting, dan eksplorasi ide.`},
+{c:`Etika & AI`,s:`Konten yang dibuat dengan AI tidak perlu dicek manusia lagi.`,a:false,e:`Salah. Hasil AI tetap perlu dicek untuk akurasi, kesesuaian, dan kualitas.`}
+];
+
+let qs=[],idx=0,score=0,answered=false,combo=0,bestCombo=0,answers=[],topicScore={};
+
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+function startGame(){
+  qs=shuffle(bank);idx=0;score=0;answered=false;combo=0;bestCombo=0;answers=[];topicScore={};
+  document.getElementById('home').style.display='none';
+  document.getElementById('result').classList.remove('active');
+  document.getElementById('game').classList.add('active');
+  render();window.scrollTo({top:0,behavior:'smooth'});
+}
+function render(){
+  const x=qs[idx];answered=false;
+  document.getElementById('cat').textContent=x.c;
+  document.getElementById('q').textContent=x.s;
+  document.getElementById('count').textContent=`${idx+1} / ${qs.length}`;
+  document.getElementById('progress').style.width=`${(idx/qs.length)*100}%`;
+  document.getElementById('liveScore').textContent=score;
+  document.getElementById('combo').textContent='x'+combo;
+  document.getElementById('feedback').classList.remove('show');
+  document.getElementById('next').classList.remove('show');
+  [document.getElementById('mitos'),document.getElementById('fakta')].forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong')});
+}
+function answer(v){
+  if(answered)return;
+  answered=true;
+  const x=qs[idx],ok=v===x.a;
+  if(!topicScore[x.c])topicScore[x.c]={ok:0,total:0};
+  topicScore[x.c].total++;
+  if(ok){score++;combo++;bestCombo=Math.max(bestCombo,combo);topicScore[x.c].ok++;} else combo=0;
+  answers.push({x,ok});
+  const m=document.getElementById('mitos'),f=document.getElementById('fakta');
+  m.disabled=f.disabled=true;
+  const chosen=v?f:m,correct=x.a?f:m;
+  if(ok)chosen.classList.add('correct');else{chosen.classList.add('wrong');correct.classList.add('correct')}
+  document.getElementById('fbTitle').textContent=ok?'SHEESH! BENAR 🔥':'NOPE — BELUM TEPAT';
+  document.getElementById('fbText').textContent=x.e;
+  document.getElementById('feedback').classList.add('show');
+  document.getElementById('next').classList.add('show');
+  document.getElementById('liveScore').textContent=score;
+  document.getElementById('combo').textContent='x'+combo;
+  document.getElementById('progress').style.width=`${((idx+1)/qs.length)*100}%`;
+  const p=document.getElementById('panel');p.classList.remove('flash');void p.offsetWidth;p.classList.add('flash');
+}
+function nextQ(){if(!answered)return;idx++;if(idx>=qs.length)finish();else render();}
+function finish(){
+  document.getElementById('game').classList.remove('active');
+  document.getElementById('result').classList.add('active');
+  const p=Math.round(score/qs.length*100);
+  document.getElementById('pct').textContent=p;
+  let g='',t='';
+  if(p>=92){g='MARCOM ROOKIE STAR 🔥';t='Kamu tajam banget membedakan konsep, taktik, metric, dan gimmick.';}
+  else if(p>=82){g='MARCOM EXPLORER ⚡';t='Pemahamanmu sudah kuat. Tinggal rapihin beberapa area yang masih misleading.';}
+  else if(p>=72){g='GOOD START 🧠';t='Fondasinya sudah oke. Cek topic map untuk lihat area yang masih bocor.';}
+  else if(p>=60){g='REVIEW DULU';t='Masih ada konsep yang ketuker. Review bagian yang paling rendah lalu gas lagi.';}
+  else{g='COBA LAGI';t='Saatnya balik ke dasar MarCom, lalu coba lagi dengan strategi yang lebih clean.';}
+  document.getElementById('grade').textContent=g;
+  document.getElementById('summary').textContent=`Benar ${score} dari ${qs.length} item • Best combo x${bestCombo}. ${t}`;
+  const bars=document.getElementById('bars');bars.innerHTML='';
+  Object.entries(topicScore).sort((a,b)=>(a[1].ok/a[1].total)-(b[1].ok/b[1].total)).forEach(([n,v])=>{
+    const p=Math.round(v.ok/v.total*100);
+    bars.innerHTML+=`<div class="bar"><div class="barhead"><span>${n}</span><b>${p}%</b></div><div class="track"><div class="fill" style="width:${p}%"></div></div></div>`;
+  });
+  const wrong=answers.filter(a=>!a.ok),r=document.getElementById('review');
+  r.innerHTML=wrong.length?
+    `<div class="eyebrow">REVIEW ZONE</div><p>${wrong.length} item perlu kamu revisit.</p>`+
+    wrong.map(a=>`<div class="review-item"><b>${a.x.s}</b><small>Jawaban benar: ${a.x.a?'FAKTA':'MITOS'} — ${a.x.e}</small></div>`).join('')
+    :`<div class="eyebrow">CLEAN SWEEP</div><h3>75/75. Insane.</h3><p>Tidak ada jawaban salah.</p>`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goHome(){
+  document.getElementById('result').classList.remove('active');
+  document.getElementById('home').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function howTo(){
+  alert("HOW TO PLAY\n\n1. Klik START THE CHALLENGE.\n2. Baca satu pernyataan.\n3. Pilih MITOS atau FAKTA.\n4. Baca penjelasan setelah menjawab.\n5. Selesaikan 75 item untuk melihat skor, combo, topic map, dan review jawaban salah.\n\nShortcut: M = Mitos, F = Fakta, Enter = Next.");
+}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('game').classList.contains('active'))return;
+  if(!answered&&(e.key==='m'||e.key==='M'))answer(false);
+  else if(!answered&&(e.key==='f'||e.key==='F'))answer(true);
+  else if(answered&&e.key==='Enter')nextQ();
+});
+</script>
+</body>
+</html>
